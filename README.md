@@ -1,7 +1,38 @@
-# SP1 Project Template
+# TxInEth1-SP1 
 
-This is a template for creating an end-to-end [SP1](https://github.com/succinctlabs/sp1) project
-that can generate a proof of any RISC-V program.
+This repo proves a successfully executed transaction included in a block on SP1.
+
+
+### Basic idea
+TxAndReceiptInclusionProof is core data structure, which include
+- block_hash,  
+- tx_hash,
+- partical_header without tx_root and receipt_root,
+- 2 merkle proofs(tx_inclusion_proof and receipt_inclusion_proof)
+
+```rust
+pub struct MerkleProof {
+    root: B256,
+    proof: Vec<(Nibbles, Bytes)>,
+    target: (Nibbles, Bytes),
+}
+
+pub struct TxAndReceiptInclusionProof {
+    block_hash: B256,
+    tx_hash: B256,
+    tx_index: usize,
+    txs_number: usize,
+    partial_header: alloy_consensus::Header, //header without (tx_root and receipt_root)
+    tx_inclusion_proof: MerkleProof,
+    receipt_inclusion_proof: MerkleProof,
+}
+```
+TxAndReceiptInclusionProof's verify() method verify
+- can rebuild merkle root from data and merkle path for tx_inclusion_proof and receipt_inclusion_proof
+- tx_inclusion_proof and receipt_inclusion_proof have same index
+- keccak(rlp(tx))= tx_hash
+- block_hash = keccak256(rlp(partical_header + tx_inclusion_proof.root + receipt_inclusion_proof.root))
+- receipt.status = 1,(hence, can not build proof for failed transaction)
 
 ## Requirements
 
