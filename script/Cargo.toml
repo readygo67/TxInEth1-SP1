@@ -1,0 +1,38 @@
+[package]
+version = "0.1.0"
+name = "tx-in-eth1-script"
+edition = "2021"
+default-run = "tx-in-eth1"
+
+[[bin]]
+name = "tx-in-eth1"
+path = "src/bin/main.rs"
+
+
+[[bin]]
+name = "vkey"
+path = "src/bin/vkey.rs"
+
+[dependencies]
+tokio = { workspace = true}
+
+tx-in-eth1-lib = { path = "../lib" }
+
+# sp1-zkvm = {workspace = true}
+sp1-sdk = {workspace = true}
+# sp1-prover = {workspace = true}
+# sp1-stark = {workspace = true }
+# sp1-core-machine = {version = "4.2.0"}
+
+alloy-provider = {workspace = true}
+alloy-network = {workspace = true}
+alloy-primitives = {workspace = true}
+
+serde_json = { workspace = true }
+serde = { workspace = true }
+
+clap = { version = "4.4.15", features = ["derive", "env"] }
+tracing = "0.1.40"
+
+[build-dependencies]
+sp1-build = "4.2.0"

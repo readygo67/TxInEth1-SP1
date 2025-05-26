@@ -1,0 +1,33 @@
+[workspace]
+members = [
+    "lib",
+    "program",
+    "script",
+]
+resolver = "2"
+
+[workspace.dependencies]
+tokio = { version = "1.45.0", features = ["full"] }
+
+#sp1 dependencies
+sp1-zkvm = { version = "4.2.0" }
+sp1-sdk = { version ="4.2.0"}
+# sp1-prover = {version ="4.2.0"}
+# sp1-stark = {version ="4.2.0" }
+
+#alloy dependencies
+alloy-consensus = {version = "=1.0.7" }
+alloy-provider = {version = "=1.0.7", features = ["debug-api", "trace-api"] }
+alloy-primitives = {version = "=1.1.2" }
+alloy-network = {version = "=1.0.7" }
+alloy-rpc-types = {version = "=1.0.7" }
+alloy-rpc-types-trace = {version = "=1.0.7" }
+alloy-rpc-types-debug = {version = "=1.0.7" }
+alloy-rlp = { version = "=0.3.12", default-features = false, features = ["core-net"] }
+alloy-trie = { version = "=0.8.1",features= ["ethereum"] }
+
+
+anyhow = {version = "1.0.98"}
+hex = {version ="0.4.3"}
+serde = { version = "1.0.219"}
+serde_json = { version = "1.0.140"}
