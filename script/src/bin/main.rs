@@ -22,10 +22,8 @@ pub struct InputArgs {
 async fn main() {
     sp1_sdk::utils::setup_logger();
 
-    let args = InputArgs{
-        rpc_url: "https://ethereum.rpc.subquery.network/public".to_string(),
-        tx_hash: "0x0a4f541f32887ea04a1d855ab7ee8248782ffaac9004259f5e4362e7ec860a94".to_string(),
-    };
+    let args = InputArgs::parse();
+
     println!("rpc_url: {}", args.rpc_url);
     println!("tx_hash: {}", args.tx_hash);
 
