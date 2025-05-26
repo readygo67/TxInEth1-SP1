@@ -5,6 +5,6 @@ pub const ELF: &[u8] = include_elf!("tx-in-eth1-program");
 
 fn main() {
     let prover = ProverClient::builder().cpu().build();
-    let (_, vk) = prover.setup(FIBONACCI_ELF);
+    let (_, vk) = prover.setup(ELF);
     println!("{}", vk.bytes32());
 }
